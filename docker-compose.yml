@@ -1,0 +1,24 @@
+# https://github.com/khezen/compose-postgres
+version: '3.5'
+
+services:
+  postgres:
+    image: postgres:10
+    environment:
+      - POSTGRES_DB=devsmap_development
+      - POSTGRES_USER=prisma
+      - POSTGRES_PASSWORD=prisma
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres
+    restart: unless-stopped
+
+networks:
+  postgres:
+    driver: bridge
+
+volumes:
+    postgres:

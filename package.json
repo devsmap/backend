@@ -1,0 +1,42 @@
+{
+  "name": "devsmap",
+  "version": "1.0.0",
+  "main": "app.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "babel src --out-dir build",
+    "dev": "nodemon --exec babel-node src/app.js",
+    "migrate:dev": "prisma migrate dev",
+    "seed": "(yarn seed:categories) && (yarn seed:countries) && (yarn seed:states) && (yarn seed:cities)",
+    "seed:categories": "node src/seeds/categories.js",
+    "seed:countries": "node src/seeds/countries.js",
+    "seed:states": "node src/seeds/states.js",
+    "seed:cities": "node src/seeds/cities.js"
+  },
+  "dependencies": {
+    "@prisma/client": "^3.0.2",
+    "@status/codes": "^1.6.2",
+    "agenda": "^4.2.1",
+    "celebrate": "^15.0.0",
+    "concurrently": "^6.2.1",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "csv-parser": "^3.0.0",
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "got": "^11.8.2",
+    "moment": "^2.29.1",
+    "morgan": "^1.10.0",
+    "prisma-error-enum": "^0.1.1",
+    "slug": "^5.1.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.15.4",
+    "@babel/core": "^7.15.5",
+    "@babel/node": "^7.15.4",
+    "@babel/preset-env": "^7.15.6",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "nodemon": "^2.0.12",
+    "prisma": "^3.0.2"
+  }
+}
