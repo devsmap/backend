@@ -6,7 +6,7 @@ const moment = require('moment');
 
 const categories = [];
 
-fs.createReadStream('src/seeds/categories.csv')
+fs.createReadStream('src/seeds/csv/categories.csv')
   .on('error', () => {
     console.log('érror');
   })
