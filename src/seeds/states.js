@@ -25,9 +25,9 @@ fs.createReadStream('src/seeds/csv/states.csv')
   .on('end', () => {
     states.forEach(async (state) => {
       let uule_name = state.name + ', ' + state.country_name 
-      // let encode_uule = ("w+CAIQICI"+SPECIAL_KEY_TABLE[uule_name.length]+Buffer.from(uule_name).toString('base64')).replaceAll(/[=]/g, '')
+      let encode_uule = ("w+CAIQICI"+SPECIAL_KEY_TABLE[uule_name.length]+Buffer.from(uule_name).toString('base64')).replaceAll(/[=]/, '')
       
-      // const country = await prisma.country.findFirst({ where: { legacy_id: parseInt(state.country_id) } });
+      const country = await prisma.country.findFirst({ where: { legacy_id: parseInt(state.country_id) } });
 
       // const createState = await prisma.state.create({ 
       //   data: {
