@@ -35,7 +35,6 @@ model states {
   created_at   DateTime  @db.Timestamp(6)
   updated_at   DateTime  @db.Timestamp(6)
   countries    countries @relation(fields: [country_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_rails_40bd891262")
-  cities       cities[]
 
   @@index([country_id], map: "index_states_on_country_id")
   @@index([name], map: "index_states_on_name")
@@ -43,7 +42,6 @@ model states {
 
 model cities {
   id         BigInt   @id @default(autoincrement())
-  state_id   BigInt
   name       String   @db.VarChar
   is_active  Boolean? @default(true)
   latitude   String   @db.VarChar
@@ -51,11 +49,9 @@ model cities {
   slug       String?  @unique(map: "index_cities_on_slug") @db.VarChar
   created_at DateTime @db.Timestamp(6)
   updated_at DateTime @db.Timestamp(6)
-  states     states   @relation(fields: [state_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_rails_59b5e22e07")
   jobs       jobs[]
 
   @@index([name], map: "index_cities_on_name")
-  @@index([state_id], map: "index_cities_on_state_id")
 }
 
 model cities_not_found {
