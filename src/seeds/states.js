@@ -27,7 +27,7 @@ fs.createReadStream('src/seeds/csv/states.csv')
       let uule_name = state.name + ', ' + state.country_name 
       let encode_uule = ("w+CAIQICI"+SPECIAL_KEY_TABLE[uule_name.length]+Buffer.from(uule_name).toString('base64'))
       
-      console.log(typeof encode_uule);
+      console.log(typeof encode_uule.replaceAll(/[=]/g, ''));
       // .replaceAll(/[=]/g, '')
       // const country = await prisma.country.findFirst({ where: { legacy_id: parseInt(state.country_id) } });
 
