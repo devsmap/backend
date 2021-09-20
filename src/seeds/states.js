@@ -29,21 +29,21 @@ fs.createReadStream('src/seeds/csv/states.csv')
       
       const country = await prisma.country.findFirst({ where: { legacy_id: parseInt(state.country_id) } });
 
-      // const createState = await prisma.state.create({ 
-      //   data: {
-      //     name: state.name, 
-      //     google_uule: encode_uule, 
-      //     is_active: true, 
-      //     is_collected: true,        
-      //     legacy_id: parseInt(state.id), 
-      //     country: {
-      //       connect: { id: country.id }
-      //     }              
-      //   },
-      //   include: {
-      //     country: true
-      //   }           
-      // });
+      const createState = await prisma.state.create({ 
+        data: {
+          name: state.name, 
+          google_uule: encode_uule, 
+          is_active: true, 
+          is_collected: true,        
+          legacy_id: parseInt(state.id), 
+          country: {
+            connect: { id: country.id }
+          }              
+        },
+        include: {
+          country: true
+        }           
+      });
     });
   });
 
