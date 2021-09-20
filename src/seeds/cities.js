@@ -38,7 +38,10 @@ fs.createReadStream('src/seeds/csv/cities.csv')
           is_active: true,       
           slug: slug(city.state_id+"-"+city.name),    
           created_at: moment().format(), 
-          updated_at: moment().format()
+          updated_at: moment().format(),
+          states: {
+            connect: { id: parseInt(city.state_id) }
+          } 
         }
       });
     });
