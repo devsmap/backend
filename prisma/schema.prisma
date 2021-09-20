@@ -12,45 +12,47 @@ datasource db {
 
 model Country {
   id           Int     @id @default(autoincrement())
-  isActive     Boolean @default(value: "true")
-  isCollected  Boolean @default(value: "true")
+  is_active    Boolean @default(value: "true")
+  is_collected Boolean @default(value: "true")
   name         String  @unique
   region       String
   subregion    String
-  google_uule  String
   google_gl    String
   google_hl    String
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
+  legacy_id    Int 
 
   states       State[]
 }
 
 model State {
   id           Int     @id @default(autoincrement())
-  countryId    Int 
-  isActive     Boolean @default(value: "true")
-  isCollected  Boolean @default(value: "true")  
-  name         String  @unique
+  country_id   Int 
+  is_active    Boolean @default(value: "true")
+  is_collected Boolean @default(value: "true")  
+  name         String 
   google_uule  String
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-  country      Country @relation(fields: [countryId], references: [id])
-  city         City[]
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
+  legacy_id    Int
+  country      Country @relation(fields: [country_id], references: [id])
 
-  @@index([countryId], map: "index_states_on_country_id")
+  cities       City[]
 }
 
 model City {
-  id           Int     @id @default(autoincrement())
-  stateId      Int 
-  isActive     Boolean @default(value: "true")
-  name         String 
-  google_uule  String
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-  state        State @relation(fields: [stateId], references: [id])
-  
+  id          Int     @id @default(autoincrement())
+  state_id    Int 
+  is_active   Boolean @default(value: "true")
+  name        String 
+  slug        String 
+  latitude    String 
+  longitude   String 
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+  state       State @relation(fields: [state_id], references: [id])
+
   // job          Job[]
 }
 

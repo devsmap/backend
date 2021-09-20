@@ -25,27 +25,19 @@ fs.createReadStream('src/seeds/csv/countries.csv')
 
   .on('end', () => {
     countries.forEach(async (country) => {
-      const upsertCountry = await prisma.countries.upsert({
-        where: {
-          id: parseInt(country.id)
-        },
-        update: {},
-        create: {
-          id: parseInt(country.id), 
+      const createCountry = await prisma.country.create({ 
+        data: {
           name: country.name, 
           region: country.region, 
           subregion: country.subregion, 
-          google_uule: '', 
           google_gl: country.google_gl, 
-          google_hl: country.google_hl, 
-          is_active: true, 
-          is_collected: true,         
-          created_at: moment().format(), 
-          updated_at: moment().format()   
-        },
+          google_hl: country.google_hl,
+          legacy_id: parseInt(country.id) 
+        } 
       });
     });
   });
+  
 
 
 
