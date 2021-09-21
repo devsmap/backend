@@ -113,7 +113,6 @@ function collect_jobs(category, country, state, url) {
                   }      
                 });
               }
-
             } else {
               const createCityNotFound = await prisma.city_not_found.create({ 
                 data: {
