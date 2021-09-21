@@ -96,7 +96,7 @@ model Company {
   jobs        Job[]
 }
 
-model CityNotFound {
+model city_not_found {
   id         Int   @id @default(autoincrement())
   state_id   Int
   name       String 

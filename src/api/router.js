@@ -2,6 +2,7 @@ import { Router } from 'express'
 import { Http } from '@status/codes'
 
 import { categoriesRouter } from './modules/categories/routes'
+// import { pinsRouter } from './modules/pins/routes'
 
 const router = Router()
 

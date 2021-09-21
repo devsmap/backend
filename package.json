@@ -11,7 +11,8 @@
     "seed:categories": "node src/seeds/categories.js",
     "seed:countries": "node src/seeds/countries.js",
     "seed:states": "node src/seeds/states.js",
-    "seed:cities": "node src/seeds/cities.js"
+    "seed:cities": "node src/seeds/cities.js",
+    "jobs:collect": "node src/scripts/collect.js"
   },
   "dependencies": {
     "@prisma/client": "^3.0.2",

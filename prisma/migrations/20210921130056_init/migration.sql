@@ -89,13 +89,13 @@ CREATE TABLE "Company" (
 );
 
 -- CreateTable
-CREATE TABLE "CityNotFound" (
+CREATE TABLE "city_not_found" (
     "id" SERIAL NOT NULL,
     "state_id" INTEGER NOT NULL,
     "name" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    CONSTRAINT "CityNotFound_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "city_not_found_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex

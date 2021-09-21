@@ -34,7 +34,7 @@ fs.createReadStream('src/seeds/csv/cities.csv')
           latitude: city.latitude, 
           longitude: city.longitude, 
           is_active: true,       
-          slug: slug(city.state_id+"-"+city.name),    
+          slug: slug(state.id+"-"+city.name),    
           state: {
             connect: { id: state.id }
           }          
