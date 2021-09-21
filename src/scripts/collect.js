@@ -58,7 +58,7 @@ function collect_jobs(category, country, state, url) {
               return;
             }
 
-            let city_name_slug = slug(state.id+"-"+job.location.replaceAll(/[^A-Za-z]/g, ' ').split('  ')[0]);
+            let city_name_slug = slug(state.id+"-"+job.location.replace(/[^A-Za-z]/g, ' ').split('  ')[0]);
             const cities = await prisma.city.findFirst({ where: { slug: city_name_slug } });
 
             if (!!cities) {
