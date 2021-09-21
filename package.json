@@ -7,7 +7,7 @@
     "build": "babel src --out-dir build",
     "dev": "nodemon --exec babel-node src/app.js",
     "migrate:dev": "prisma migrate dev",
-    "seed": "(yarn seed:countries) && (yarn seed:states) && (yarn seed:cities)",
+    "seed": "(yarn seed:countries) && (yarn seed:states) && (yarn seed:cities) && (yarn seed:categories)",
     "seed:categories": "node src/seeds/categories.js",
     "seed:countries": "node src/seeds/countries.js",
     "seed:states": "node src/seeds/states.js",
