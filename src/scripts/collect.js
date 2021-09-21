@@ -109,7 +109,6 @@ function collect_jobs(category, country, state, url) {
                     description: job.description,
                     via: job.via,
                     published_at: posted_at_datetime,
-                    time_zone: country.time_zone,
                     gogole_job_id: job.job_id
                   }      
                 });
