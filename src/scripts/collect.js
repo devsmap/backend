@@ -83,6 +83,8 @@ function collect_jobs(category, country, state, url) {
               
               let companies = await prisma.company.findFirst({ where: { slug: slug(job.company_name) } });
               if (!companies) {
+                console.log('aqui 1');
+
                 companies = await prisma.company.create({ 
                   data: {
                     name: job.company_name, 
@@ -90,7 +92,7 @@ function collect_jobs(category, country, state, url) {
                   }      
                 });
 
-                console.log(companies);
+                console.log('aqui 2');
               }
 
               
