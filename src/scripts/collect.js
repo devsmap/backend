@@ -91,28 +91,30 @@ function collect_jobs(category, country, state, url) {
                 });
               }
 
-              let jobs = await prisma.job.findFirst({ where: { gogole_job_id: job.job_id } });
-              if (!jobs) {
-                jobs = await prisma.job.create({ 
-                  data: {
-                    category: {
-                      connect: { id: category.id },
-                    },     
-                    city: {
-                      connect: { id: cities.id },
-                    },
-                    company: {
-                      connect: { id: companies.id },
-                    },          
-                    is_active: true,                                             
-                    title: job.title,
-                    description: job.description,
-                    via: job.via,
-                    published_at: posted_at_datetime,
-                    gogole_job_id: job.job_id
-                  }      
-                });
-              }
+              console.log(companies);
+
+              // let jobs = await prisma.job.findFirst({ where: { gogole_job_id: job.job_id } });
+              // if (!jobs) {
+              //   jobs = await prisma.job.create({ 
+              //     data: {
+              //       category: {
+              //         connect: { id: category.id },
+              //       },     
+              //       city: {
+              //         connect: { id: cities.id },
+              //       },
+              //       company: {
+              //         connect: { id: companies.id },
+              //       },          
+              //       is_active: true,                                             
+              //       title: job.title,
+              //       description: job.description,
+              //       via: job.via,
+              //       published_at: posted_at_datetime,
+              //       gogole_job_id: job.job_id
+              //     }      
+              //   });
+              // }
             } else {
               const createCityNotFound = await prisma.city_not_found.create({ 
                 data: {
