@@ -100,6 +100,9 @@ CREATE TABLE "city_not_found" (
 CREATE UNIQUE INDEX "Country_name_key" ON "Country"("name");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "Job_gogole_job_id_key" ON "Job"("gogole_job_id");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "Company_slug_key" ON "Company"("slug");
 
 -- AddForeignKey
