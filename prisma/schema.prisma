@@ -66,7 +66,7 @@ model Job {
   description    String
   via            String 
   published_at   DateTime
-  gogole_job_id  String
+  gogole_job_id  String   @unique
   created_at     DateTime @default(now())
   updated_at     DateTime @updatedAt
   category       Category @relation(fields: [category_id], references: [id])
@@ -87,7 +87,7 @@ model Company {
   id          Int      @id @default(autoincrement())
   is_customer Boolean  @default(value: "false")
   name        String
-  slug        String
+  slug        String   @unique
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt
 

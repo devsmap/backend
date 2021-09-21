@@ -99,6 +99,9 @@ CREATE TABLE "city_not_found" (
 -- CreateIndex
 CREATE UNIQUE INDEX "Country_name_key" ON "Country"("name");
 
+-- CreateIndex
+CREATE UNIQUE INDEX "Company_slug_key" ON "Company"("slug");
+
 -- AddForeignKey
 ALTER TABLE "State" ADD CONSTRAINT "State_country_id_fkey" FOREIGN KEY ("country_id") REFERENCES "Country"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
