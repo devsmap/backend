@@ -8,7 +8,7 @@ const app = express()
 applyMiddlewares(app)
 
 BigInt.prototype.toJSON = function() {       
-  return this.toString();
+  return this.toString()
 }
 
 app.listen(PORT, () => {
