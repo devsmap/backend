@@ -35,8 +35,6 @@ function build_url(category, state, country) {
       url += "&chips=date_posted:week";
       url += "&api_key=bebfd52dac171994660134ca1f3d5a0146e7f7dea592dff3ba25082864bbc98f"
 
-      console.log(category.name + "/ " + state.name + "/ " + url);
-
   return url;
 }
 
@@ -47,6 +45,8 @@ function collect_jobs(category, country, state, url) {
     if (typeof res.body['jobs_results'] != "undefined") {
       
       res.body['jobs_results'].forEach(async (job) => {
+
+        console.log(category.name + "/ " + state.name + "/ " + url);
 
         if (!((/Qualquer lugar|Anywhere/).test(job.location) || (job.location == state.name) || (!job.location || job.location.length === 0 ) )) {
           if ((/hora|hour|minuto|minute|dia|day|día/).test(job.detected_extensions.posted_at)) {
