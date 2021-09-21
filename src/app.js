@@ -1,4 +1,4 @@
-import express from 'express'
+const express = require('express');
 
 import { applyMiddlewares } from './api/setup'
 import { PORT } from './config/environment'
