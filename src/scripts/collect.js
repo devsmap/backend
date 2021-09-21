@@ -44,9 +44,9 @@ function collect_jobs(category, country, state, url) {
 
     if (typeof res.body['jobs_results'] != "undefined") {
       
-      res.body['jobs_results'].forEach(async (job) => {
+      console.log(country.name + " / " + state.name + " / " + category.name + " / " + res.body['jobs_results'].length);
 
-        console.log(category.name + "/ " + state.name + "/ " + url);
+      res.body['jobs_results'].forEach(async (job) => {
 
         if (!((/Qualquer lugar|Anywhere/).test(job.location) || (job.location == state.name) || (!job.location || job.location.length === 0 ) )) {
           if ((/hora|hour|minuto|minute|dia|day|día/).test(job.detected_extensions.posted_at)) {
