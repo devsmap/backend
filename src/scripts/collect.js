@@ -16,7 +16,7 @@ const prisma = new PrismaClient();
         categories.forEach(async (category) => {               
           let url  = build_url(category, state, country);
           
-          collect_jobs(category, country, state, category, url);
+          collect_jobs(category, country, state, url);
         });
 
       }, 2000 * index);
@@ -40,7 +40,7 @@ function build_url(category, state, country) {
   return url;
 }
 
-function collect_jobs(category, country, state, category, url) {
+function collect_jobs(category, country, state, url) {
   got.get(url, {responseType: 'json'})
   .then(res => {
 
