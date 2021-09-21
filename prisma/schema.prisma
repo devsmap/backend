@@ -65,9 +65,7 @@ model Job {
   title          String
   description    String
   via            String 
-  link           String
   published_at   DateTime
-  time_zone      String
   gogole_job_id  String
   created_at     DateTime @default(now())
   updated_at     DateTime @updatedAt

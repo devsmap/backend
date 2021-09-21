@@ -61,81 +61,69 @@ function collect_jobs(category, country, state, category, url) {
             let city_name_slug = slug(state.id+"-"+job.location.replaceAll(/[^A-Za-z]/g, ' ').split('  ')[0]);
             const cities = await prisma.city.findFirst({ where: { slug: city_name_slug } });
 
-            console.log(city_name_slug);
+            if (!!cities) {
+              let posted_at_datetime = '';
+              switch (posted_at) {
+                case posted_at.match(/hora|hour|minuto|minute/)?.input:
 
-            // if ((cities.length) > 0) {
+                  switch (posted_at) {
+                    case posted_at.match(/hora|hour|/)?.input:
+                      posted_at_datetime = moment().subtract(posted_at_int, 'hours').format();
+                      break;
+                      case posted_at.match(/minuto|minute|/)?.input:
+                        posted_at_datetime = moment().subtract(posted_at_int, 'minute').format();
+                        break;                      
+                  }
 
-            //   let posted_at_datetime = '';
-            //   switch (posted_at) {
-            //     case posted_at.match(/hora|hour|minuto|minute/)?.input:
+                  break;
+                case posted_at.match(/dia|day|día/)?.input:
+                  posted_at_datetime = moment().subtract(posted_at_int, 'days').format();
+                  break;
+              }
+              
+              let companies = await prisma.company.findFirst({ where: { slug: slug(job.company_name) } });
+              if (!companies) {
+                companies = await prisma.company.create({ 
+                  data: {
+                    name: job.company_name, 
+                    slug: slug(job.company_name)     
+                  }      
+                });
+              }
 
-            //       switch (posted_at) {
-            //         case posted_at.match(/hora|hour|/)?.input:
-            //           posted_at_datetime = moment().subtract(posted_at_int, 'hours').format();
-            //           break;
-            //           case posted_at.match(/minuto|minute|/)?.input:
-            //             posted_at_datetime = moment().subtract(posted_at_int, 'minute').format();
-            //             break;                      
-            //       }
+              let jobs = await prisma.job.findFirst({ where: { gogole_job_id: job.job_id } });
+              if (!jobs) {
+                jobs = await prisma.job.create({ 
+                  data: {
+                    category: {
+                      connect: { id: category.id },
+                    },     
+                    city: {
+                      connect: { id: cities.id },
+                    },
+                    company: {
+                      connect: { id: companies.id },
+                    },          
+                    is_active: true,                                             
+                    title: job.title,
+                    description: job.description,
+                    via: job.via,
+                    published_at: posted_at_datetime,
+                    time_zone: country.time_zone,
+                    gogole_job_id: job.job_id
+                  }      
+                });
+              }
 
-            //       break;
-            //     case posted_at.match(/dia|day|día/)?.input:
-            //       posted_at_datetime = moment().subtract(posted_at_int, 'days').format();
-            //       break;
-            //   }
-
-            //   try {
-            //     const upsertCompany = await prisma.company.upsert({
-            //       where: {
-            //         slug: slug(job.company_name),
-            //       },
-            //       update: {},
-            //       create: {
-            //         name: job.company_name, 
-            //         slug: slug(job.company_name),
-            //         created_at: moment().format(), 
-            //         updated_at: moment().format()   
-            //       },
-            //     });
-
-            //     const upsertJob = await prisma.job.upsert({
-            //     where: {
-            //       gogole_job_id: job.job_id,
-            //     },
-            //     update: {},
-            //     create: {
-            //       title: job.title,
-            //       description: job.description,
-            //       via: job.via,
-            //       published_at: posted_at_datetime,
-            //       time_zone: country.time_zone,
-            //       is_active: true,
-            //       created_at: moment().format(), 
-            //       updated_at: moment().format(),
-            //       gogole_job_id: job.job_id,
-            //       categories: {
-            //         connect: { id: category.id },
-            //       },
-            //       cities: {
-            //         connect: { id: cities[0].id },
-            //       },
-            //       companies: {
-            //         connect: { id: upsertCompany.id },
-            //       }   
-            //     },
-            //   });                 
-            //   } catch (e) {
-            //     debugger
-            //   }
-            // } else {
-            //   const createCityNotFound = await prisma.city_not_found.create({ 
-            //     data: {
-            //       state_id: state.id,
-            //       name: job.location, 
-            //       created_at: moment().format()                    
-            //     } 
-            //   });            
-            // }
+            } else {
+              const createCityNotFound = await prisma.city_not_found.create({ 
+                data: {
+                  state_id: state.id,
+                  name: job.location, 
+                  created_at: moment().format()                    
+                } 
+              });            
+            }
           }
         }
       });
