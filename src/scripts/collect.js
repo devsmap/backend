@@ -6,10 +6,10 @@ const prisma = new PrismaClient();
 
 (async () => {
 
-  const countries = await prisma.country.findMany({ where: { is_collected: true } });
+  const countries = await prisma.countries.findMany({ where: { is_collected: true } });
   countries.forEach(async (country) => {  
-    const states = await prisma.state.findMany({ where: { country_id: parseInt(country.id), is_collected: true }, include: { cities: true } });
-    const categories = await prisma.category.findMany({ where: { is_active: true } });
+    const states = await prisma.states.findMany({ where: { country_id: parseInt(country.id), is_collected: true }, include: { cities: true } });
+    const categories = await prisma.categories.findMany({ where: { is_active: true } });
     states.forEach(async (state, index) => {
       setTimeout(() => {
 
@@ -59,7 +59,7 @@ function collect_jobs(category, country, state, url) {
             }
 
             let city_name_slug = slug(state.id+"-"+job.location.replace(/[^A-Za-z]/g, ' ').split('  ')[0]);
-            const cities = await prisma.city.findFirst({ where: { slug: city_name_slug } });
+            const cities = await prisma.cities.findFirst({ where: { slug: city_name_slug } });
 
             if (!!cities) {
               let posted_at_datetime = '';
@@ -81,7 +81,7 @@ function collect_jobs(category, country, state, url) {
                   break;
               }
 
-              const upsertCompany = await prisma.company.upsert({
+              const upsertCompany = await prisma.companies.upsert({
                 where: {
                   slug: slug(job.company_name),
                 },
@@ -92,7 +92,7 @@ function collect_jobs(category, country, state, url) {
                 },
               });
 
-              const upsertJob = await prisma.job.upsert({
+              const upsertJob = await prisma.jobs.upsert({
                 where: {
                   gogole_job_id: job.job_id,
                 },
@@ -116,7 +116,7 @@ function collect_jobs(category, country, state, url) {
                 },
               });  
             } else {
-              const createCityNotFound = await prisma.city_not_found.create({ 
+              const createCityNotFound = await prisma.cities_not_found.create({ 
                 data: {
                   state_id: state.id,
                   name: job.location, 

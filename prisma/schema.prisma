@@ -10,7 +10,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Country {
+model countries {
   id           Int     @id @default(autoincrement())
   is_active    Boolean @default(value: "true")
   is_collected Boolean @default(value: "true")
@@ -23,10 +23,10 @@ model Country {
   updated_at   DateTime @updatedAt
   legacy_id    Int 
 
-  states       State[]
+  states       states[]
 }
 
-model State {
+model states {
   id           Int     @id @default(autoincrement())
   country_id   Int 
   is_active    Boolean @default(value: "true")
@@ -36,12 +36,12 @@ model State {
   created_at   DateTime @default(now())
   updated_at   DateTime @updatedAt
   legacy_id    Int
-  country      Country @relation(fields: [country_id], references: [id])
+  country      countries @relation(fields: [country_id], references: [id])
 
-  cities       City[]
+  cities       cities[]
 }
 
-model City {
+model cities {
   id          Int     @id @default(autoincrement())
   state_id    Int 
   is_active   Boolean @default(value: "true")
@@ -51,12 +51,12 @@ model City {
   longitude   String 
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt
-  state       State @relation(fields: [state_id], references: [id])
+  state       states @relation(fields: [state_id], references: [id])
 
-  jobs        Job[]
+  jobs        jobs[]
 }
 
-model Job {
+model jobs {
   id             Int      @id @default(autoincrement())
   category_id    Int
   city_id        Int  
@@ -69,21 +69,21 @@ model Job {
   gogole_job_id  String   @unique
   created_at     DateTime @default(now())
   updated_at     DateTime @updatedAt
-  category       Category @relation(fields: [category_id], references: [id])
-  city           City     @relation(fields: [city_id], references: [id])
-  company        Company  @relation(fields: [company_id], references: [id])
+  category       categories @relation(fields: [category_id], references: [id])
+  city           cities     @relation(fields: [city_id], references: [id])
+  company        companies  @relation(fields: [company_id], references: [id])
 }
 
-model Category {
+model categories {
   id          Int       @id @default(autoincrement())
   name        String    
   is_active   Boolean  @default(value: "true")
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt
-  jobs        Job[]
+  jobs        jobs[]
 }
 
-model Company {
+model companies {
   id          Int      @id @default(autoincrement())
   is_customer Boolean  @default(value: "false")
   name        String
@@ -91,10 +91,10 @@ model Company {
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt
 
-  jobs        Job[]
+  jobs        jobs[]
 }
 
-model city_not_found {
+model cities_not_found {
   id         Int   @id @default(autoincrement())
   state_id   Int
   name       String 

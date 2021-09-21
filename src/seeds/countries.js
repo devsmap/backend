@@ -25,7 +25,7 @@ fs.createReadStream('src/seeds/csv/countries.csv')
 
   .on('end', () => {
     countries.forEach(async (country) => {
-      const createCountry = await prisma.country.create({ 
+      const createCountry = await prisma.countries.create({ 
         data: {
           name: country.name, 
           region: country.region, 

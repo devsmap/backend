@@ -4,10 +4,10 @@ import {
   pinsByCategories
 } from './controller'
 
-const categoriesRouter = Router()
+const pinsRouter = Router()
 
-categoriesRouter
+pinsRouter
   .route('/api/v1/pins/:category_id/default')
   .get(pinsByCategories)
   
-export { categoriesRouter }
+export { pinsRouter }

@@ -26,9 +26,9 @@ fs.createReadStream('src/seeds/csv/cities.csv')
   .on('end', () => {
     cities.forEach(async (city) => {
 
-      const state = await prisma.state.findFirst({ where: { legacy_id: parseInt(city.state_id) } });
+      const state = await prisma.states.findFirst({ where: { legacy_id: parseInt(city.state_id) } });
 
-      const createCity = await prisma.city.create({ 
+      const createCity = await prisma.cities.create({ 
         data: {
           name: city.name, 
           latitude: city.latitude, 

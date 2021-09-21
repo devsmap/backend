@@ -23,7 +23,7 @@ fs.createReadStream('src/seeds/csv/categories.csv')
 
   .on('end', () => {
     categories.forEach(async (category) => {
-      const upsertCountry = await prisma.category.upsert({
+      const upsertCountry = await prisma.categories.upsert({
         where: {
           id: parseInt(category.id)
         },
