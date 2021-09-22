@@ -21,6 +21,7 @@
     "@status/codes": "^1.6.2",
     "agenda": "^4.2.1",
     "celebrate": "^15.0.0",
+    "colors": "^1.4.0",
     "concurrently": "^6.2.1",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
