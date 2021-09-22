@@ -1,9 +1,7 @@
-const csv = require('csv-parser')
-const fs = require('fs')
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
-const moment = require('moment');
-const slug = require('slug');
+import csv from 'csv-parser'
+import fs from 'fs'
+import slug from 'slug'
+import { prisma } from '../database/client.js'
 
 const cities = [];
 
