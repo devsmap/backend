@@ -1,16 +1,16 @@
 import express from 'express'
 
-// import { applyMiddlewares } from './api/setup.js'
-import { PORT } from './config/environment.js'
+import { applyMiddlewares } from '../src/api/setup.js'
+// import { PORT } from './config/environment.js'
 
-const app = express()
+// const app = express()
 
-// applyMiddlewares(app)
+// // applyMiddlewares(app)
 
-BigInt.prototype.toJSON = function() {       
-  return this.toString()
-}
+// BigInt.prototype.toJSON = function() {       
+//   return this.toString()
+// }
 
-app.listen(PORT, () => {
-  console.log('Server running at port', PORT)
-})
+// app.listen(PORT, () => {
+//   console.log('Server running at port', PORT)
+// })

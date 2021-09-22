@@ -2,7 +2,7 @@ import { Router } from 'express'
 
 import {
   findAllCategories
-} from './controller'
+} from './controller.js'
 
 const categoriesRouter = Router()
 

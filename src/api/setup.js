@@ -6,10 +6,10 @@ import { errors } from 'celebrate'
 
 import { router } from './router.js'
 
-// export const applyMiddlewares = app => {
-//   app.use(express.json())
-//   app.use(cookieParser())
-//   app.use(morgan('tiny'))
-//   app.use(router)
-//   app.use(errors())
-// }
+export const applyMiddlewares = app => {
+  app.use(express.json())
+  app.use(cookieParser())
+  app.use(morgan('tiny'))
+  app.use(router)
+  app.use(errors())
+}
