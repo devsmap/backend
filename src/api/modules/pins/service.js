@@ -1,4 +1,4 @@
-import { prisma } from '~database/client'
+import { prisma } from '../../../database/client.js'
 
 export const allByCategories = function(category_id) {
     const jobs = prisma.$queryRawUnsafe(

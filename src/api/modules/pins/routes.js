@@ -2,7 +2,7 @@ import { Router } from 'express'
 
 import {
   pinsByCategories
-} from './controller'
+} from './controller.js'
 
 const pinsRouter = Router()
 
