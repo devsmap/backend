@@ -1,5 +1,5 @@
 import { PrismaError } from 'prisma-error-enum'
-import { prisma } from '/Users/414n/workspace/devsmap/backend/src/database/client.js'
+import { prisma } from '../../../database/client.js'
 
 export const findAllCategories = () =>
   prisma.categories.findMany({ 
