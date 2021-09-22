@@ -1,7 +1,7 @@
-const express = require('express');
+import express from 'express'
 
-import { applyMiddlewares } from './api/setup'
-import { PORT } from './config/environment'
+import { applyMiddlewares } from './api/setup.js'
+import { PORT } from './config/environment.js'
 
 const app = express()
 
