@@ -1,4 +1,4 @@
-import { HttpException } from 'src/api/shared/exceptions.js'
+import { HttpException } from './src/api/shared/exceptions.js'
 
 export const errorHandler = () => (error, req, res, next) => {
   if (error instanceof HttpException) {
