@@ -1,3 +1,4 @@
+import { cors } from 'cors'
 import { config } from 'dotenv'
 config({ path: '.env' })
 
@@ -9,6 +10,8 @@ import { PORT } from './config/environment.js'
 const app = express()
 
 applyMiddlewares(app)
+
+app.use(cors())
 
 BigInt.prototype.toJSON = function() {       
   return this.toString()
