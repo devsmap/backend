@@ -12,4 +12,5 @@ export const applyMiddlewares = app => {
   app.use(morgan('tiny'))
   app.use(router)
   app.use(errors())
+  app.use(cors({ origin: 'https://devsmap-frontend.herokuapp.com', optionsSuccessStatus: 200 }))
 }
