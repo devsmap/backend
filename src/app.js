@@ -1,3 +1,6 @@
+import { config } from 'dotenv'
+config({ path: '.env' })
+
 import express from 'express'
 
 import { applyMiddlewares } from './api/setup.js'

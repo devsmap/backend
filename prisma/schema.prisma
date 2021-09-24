@@ -46,11 +46,12 @@ model cities {
   state_id    Int 
   is_active   Boolean @default(value: "true")
   name        String 
-  slug        String 
+  slug        String  @unique
   latitude    String 
   longitude   String 
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt
+  by_bot      Boolean @default(value: "false")
   state       states @relation(fields: [state_id], references: [id])
 
   jobs        jobs[]
@@ -93,15 +94,6 @@ model companies {
 
   jobs        jobs[]
 }
-
-model cities_not_found {
-  id         Int   @id @default(autoincrement())
-  state_id   Int
-  name       String 
-  created_at DateTime @default(now())
-}
-
-
 
 
 
