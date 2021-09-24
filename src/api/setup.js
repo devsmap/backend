@@ -1,9 +1,9 @@
 import express from 'express'
 import cookieParser from 'cookie-parser'
 import morgan from 'morgan'
+import cors from 'cors'
 import 'express-async-errors'
 import { errors } from 'celebrate'
-
 import { router } from './router.js'
 
 export const applyMiddlewares = app => {
