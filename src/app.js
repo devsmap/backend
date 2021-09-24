@@ -1,4 +1,4 @@
-import { cors } from 'cors'
+import cors from 'cors'
 import { config } from 'dotenv'
 config({ path: '.env' })
 
